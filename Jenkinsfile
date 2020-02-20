@@ -41,7 +41,7 @@ pipeline {
                     jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
                     ],
                 projectKey: 'JIR',
-                issueType: 'Task',
+                issueType: '10008',
                 autoRaiseIssue: true,
                 autoResolveIssue: false,
                 autoUnlinkIssue: false,
