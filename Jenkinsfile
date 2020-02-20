@@ -31,7 +31,7 @@ pipeline {
     post {
         always {
             junit (
-                testResults: '**/reports/*.xml',
+                testResults: 'results/report.xml',
                 testDataPublishers: [
                 jiraTestResultReporter(
                     configs: [
