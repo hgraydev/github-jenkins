@@ -4,20 +4,28 @@ pipeline {
     stages {
         stage("Dependencies") {
             steps {
-                echo "Installing dependencies"
+                echo 'Installing dependencies'
             }
         }
         stage("Build") {
-            echo "Building ......"
+            steps {
+                echo "Building ......"
+            }
         }
         stage("Test") {
-            echo "Testing ......"
+            steps {
+                echo "Testing ......"
+            }
         }
         stage("Test e2e") {
-            echo "Testing e2e ......"
+            steps {
+                echo "Testing e2e ......"
+            }
         }
         stage("Deploy") {
-            echo "Deploying ......"
+            steps {
+                echo "Deploying ......"
+            }
         }
     }
 }
