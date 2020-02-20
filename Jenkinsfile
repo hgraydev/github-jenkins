@@ -15,6 +15,7 @@ pipeline {
         stage("Test") {
             steps {
                 echo "Testing ......"
+                sh 'pytest --junitxml=result.xml'
             }
         }
         stage("Test e2e") {
