@@ -10,7 +10,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building ......"
-                echo ${BUILD_URL}
+                echo "${BUILD_URL}"
             }
         }
         stage("Test") {
