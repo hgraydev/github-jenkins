@@ -1,6 +1,7 @@
 pipeline {
+    
     agent any
-    def repositoryUrl = scm.userRemoteConfigs[0].url  
+    
     stages {
         stage("Dependencies") {
             steps {
@@ -11,8 +12,7 @@ pipeline {
             steps {
                 echo "Building ......"
                 echo "${BUILD_URL}"
-                echo repositoryUrl  
-
+                echo scm.getUserRemoteConfigs()[0].getUrl() 
             }
         }
         stage("Test") {
