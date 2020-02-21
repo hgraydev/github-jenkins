@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    def repositoryUrl = scm.userRemoteConfigs[0].url  
     stages {
         stage("Dependencies") {
             steps {
@@ -11,6 +11,8 @@ pipeline {
             steps {
                 echo "Building ......"
                 echo "${BUILD_URL}"
+                echo repositoryUrl  
+
             }
         }
         stage("Test") {
@@ -39,7 +41,7 @@ pipeline {
                     configs: [
                     jiraStringField(fieldKey: 'summary', value: '${DEFAULT_SUMMARY}'),
                     jiraStringField(fieldKey: 'description', value: '${DEFAULT_DESCRIPTION}'),
-                    jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: ${BUILD_URL})], [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
+                    jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
                     ],
                 projectKey: 'JIR',
                 issueType: '10008',
