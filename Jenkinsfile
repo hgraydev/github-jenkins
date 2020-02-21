@@ -11,8 +11,6 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building ......"
-                echo "${BUILD_URL}"
-                echo scm.getUserRemoteConfigs()[0].getUrl() 
             }
         }
         stage("Test") {
@@ -46,9 +44,9 @@ pipeline {
                      ],
                      projectKey: 'JIR',
                      issueType: '10008',
-                     autoRaiseIssue: true,
+                     autoRaiseIssue: false,
                      autoResolveIssue: false,
-                     autoUnlinkIssue: false,
+                     autoUnlinkIssue: true,
                    )
                  ]
                 )
