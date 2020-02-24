@@ -1,6 +1,6 @@
 node {
   stage('JIRA') {
-    def searchResults = jiraJqlSearch jql: "project = JiraTestResultReporter AND issuekey = 'TEST-1'"
+    def searchResults = jiraJqlSearch jql: "project = JiraTestResultReporter AND issuekey = 'JIR-6'"
     def issues = searchResults.data.issues
     for (i = 0; i <issues.size(); i++) {
       def fixVersion = jiraNewVersion version: [name: "new-fix-version-1.0",
