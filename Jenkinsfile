@@ -32,8 +32,6 @@ pipeline {
         }
     }
     post {
-                    echo "Creating Issues In Jira"
-
         always {
             junit (
                  testResults: 'result.xml',
