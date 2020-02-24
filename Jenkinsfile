@@ -44,7 +44,7 @@ pipeline {
                      ],
                      projectKey: 'JIR',
                      issueType: '10010',
-                     autoRaiseIssue: false,
+                     autoRaiseIssue: true,
                      autoResolveIssue: false,
                      autoUnlinkIssue: false,
                    )
