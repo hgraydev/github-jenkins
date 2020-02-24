@@ -1,12 +1,17 @@
 node {
   stage('JIRA') {
-    def searchResults = jiraJqlSearch jql: "project = JIR AND issuekey = 'JIR-6'"
-    def issues = searchResults.data.issues
-    for (i = 0; i <issues.size(); i++) {
-      def fixVersion = jiraNewVersion version: [name: "new-fix-version-1.0",
-                                                project: "JIR"]
-      def testIssue = [fields: [fixVersions: [fixVersion.data]]]
-      response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue
-    }
+    # Look at IssueInput class for more information.
+    def testIssue = [fields: [ // id or key must present for project.
+                               project: [id: '10001'],
+                               summary: 'New JIRA Created from Jenkins.',
+                               description: 'New JIRA Created from Jenkins.',
+                               customfield_1000: 'customValue',
+                               // id or name must present for issueType.
+                               issuetype: [id: '10010']]]
+
+    response = jiraNewIssue issue: testIssue
+
+    echo response.successful.toString()
+    echo response.data.toString()
   }
 }
