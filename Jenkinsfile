@@ -1,6 +1,5 @@
 node {
   stage('JIRA') {
-    # Look at IssueInput class for more information.
     def testIssue = [fields: [ // id or key must present for project.
                                project: [id: '10001'],
                                summary: 'New JIRA Created from Jenkins.',
