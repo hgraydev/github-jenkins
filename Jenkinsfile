@@ -16,6 +16,7 @@ pipeline {
         stage("Test") {
             steps {
                 echo "Testing ......"
+                sh 'rm result.xml'
                 sh 'pytest --junitxml=result.xml'
             }
         }
@@ -44,9 +45,9 @@ pipeline {
                      ],
                      projectKey: 'JIR',
                      issueType: '10010',
-                     autoRaiseIssue: true,
-                     autoResolveIssue: true,
-                     autoUnlinkIssue: true,
+                     autoRaiseIssue: false,
+                     autoResolveIssue: false,
+                     autoUnlinkIssue: false,
                    )
                  ]
                 )
