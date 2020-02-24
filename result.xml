@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="1" hostname="localhost.localdomain" name="pytest" skipped="0" tests="1" time="0.044" timestamp="2020-02-20T16:29:50.789950"><testcase classname="test_suma" file="test_suma.py" line="4" name="test_suma" time="0.001"><failure message="assert 6 == 7
- +  where 6 = suma()">def test_suma():
-&gt;       assert suma() == 7
-E       assert 6 == 7
-E        +  where 6 = suma()
-
-test_suma.py:6: AssertionError</failure></testcase></testsuite></testsuites>
