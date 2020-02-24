@@ -1,54 +1,12 @@
-pipeline {
-    
-    agent any
-    
-    stages {
-        stage("Dependencies") {
-            steps {
-                echo 'Installing dependencies'
-            }
-        }
-        stage("Build") {
-            steps {
-                echo "Building ......"
-            }
-        }
-        stage("Test") {
-            steps {
-                echo "Testing ......"
-                sh 'pytest --junitxml=result.xml'
-            }
-        }
-        stage("Test e2e") {
-            steps {
-                echo "Testing e2e ......"
-            }
-        }
-        stage("Deploy") {
-            steps {
-                echo "Deploying ......"
-            }
-        }
+node {
+  stage('JIRA') {
+    def searchResults = jiraJqlSearch jql: "project = JIR AND issuekey = 'TEST-1'"
+    def issues = searchResults.data.issues
+    for (i = 0; i <issues.size(); i++) {
+      def fixVersion = jiraNewVersion version: [name: "new-fix-version-1.0",
+                                                project: "JIR"]
+      def testIssue = [fields: [fixVersions: [fixVersion.data]]]
+      response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue
     }
-    post {
-        always {
-            junit (
-                 testResults: 'result.xml',
-                 testDataPublishers: [
-                   jiraTestResultReporter(
-                     configs: [
-                       jiraStringField(fieldKey: 'summary', value: '${DEFAULT_SUMMARY}'),
-                       jiraStringField(fieldKey: 'description', value: '${DEFAULT_DESCRIPTION}'),
-                       jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
-                     ],
-                     projectKey: 'JIR',
-                     issueType: '10010',
-                     autoRaiseIssue: false,
-                     autoResolveIssue: false,
-                     autoUnlinkIssue: false,
-                   )
-                 ] 
-                )
-        }
-    }
+  }
 }
