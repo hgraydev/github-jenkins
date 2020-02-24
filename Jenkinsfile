@@ -16,8 +16,8 @@ pipeline {
         stage("Test") {
             steps {
                 echo "Testing ......"
-                sh 'rm result.xml'
                 sh 'pytest --junitxml=result.xml'
+                echo "Init currentResult: ${currentBuild.currentResult}"
             }
         }
         stage("Test e2e") {
