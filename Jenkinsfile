@@ -1,53 +1,36 @@
 pipeline {
     agent any
+    
+    environment {
+        CHROME_BIN = '/bin/google-chrome'
+    }
 
     stages {
-        stage("Dependencies") {
+        stage('Dependencies') {
             steps {
-                echo 'Installing dependencies'
+                echo 'Install dependencies ......'
             }
         }
-        stage("Build") {
+        stage('Build') {
             steps {
-                echo "Building ......"
+                echo 'Build project ......'
             }
         }
-        stage("Test") {
+        stage('Unit Tests') {
             steps {
-                echo "Testing ......"
-                sh 'pytest --junitxml=result.xml'
+                echo 'Running tests ......' 
             }
         }
-        stage("Test e2e") {
+        stage('e2e Tests') {
             steps {
-                echo "Testing e2e ......"
+                echo 'Running e2e test .......'
             }
         }
-        stage("Deploy") {
+        stage('Deploy') {
             steps {
-                echo "Deploying ......"
+                echo 'Deploying proyect....'
             }
         }
     }
-    post {
-        always {
-            junit (
-                testResults: 'result.xml',
-                testDataPublishers: [
-                    jiraTestResultReporter(
-                        configs: [
-                        jiraStringField(fieldKey: 'summary', value: '${DEFAULT_SUMMARY}'),
-                        jiraStringField(fieldKey: 'description', value: '${DEFAULT_DESCRIPTION}'),
-                        jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
-                        ],
-                    projectKey: 'JIR',
-                    issueType: '6',
-                    autoRaiseIssue: true,
-                    autoResolveIssue: false,
-                    autoUnlinkIssue: false,
-                    )
-                ]
-            )
-        }
-    }
+
 }
