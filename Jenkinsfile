@@ -37,18 +37,21 @@ pipeline {
     
     post { 
         always { 
-            echo 'I will always say Hello again!'
-            script {
-                withEnv(['JIRA_SITE=LOCAL']) {
-                def testIssue = [fields: [ project: [id: '10001'],
-                                            summary: 'New JIRA Created from Jenkins.',
-                                            description: 'New JIRA Created from Jenkins.',
-                                            issuetype: [id: '10010']]]
+            when( ${currentBuild.currentResult} == "FAILURE") {
 
-                response = jiraNewIssue issue: testIssue
+                echo 'I will always say Hello again!'
+                script {
+                    withEnv(['JIRA_SITE=LOCAL']) {
+                    def testIssue = [fields: [ project: [id: '10001'],
+                                                summary: 'New JIRA Created from Jenkins.',
+                                                description: 'New JIRA Created from Jenkins.',
+                                                issuetype: [id: '10010']]]
 
-                echo response.successful.toString()
-                echo response.data.toString()
+                    response = jiraNewIssue issue: testIssue
+
+                    echo response.successful.toString()
+                    echo response.data.toString()
+                    }
                 }
             }
         }
