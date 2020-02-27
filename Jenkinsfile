@@ -4,6 +4,7 @@ pipeline {
     
     environment {
         CHROME_BIN = '/bin/google-chrome'
+        STATUS = ''
     }
 
     stages {
@@ -37,7 +38,8 @@ pipeline {
     
     post { 
         always { 
-            when( ${currentBuild.currentResult} == "FAILURE") {
+            env.STATUS = ${currentBuild.currentResult}
+            when(  env.STAUTS == "FAILURE") {
 
                 echo 'I will always say Hello again!'
                 script {
