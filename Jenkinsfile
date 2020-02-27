@@ -38,6 +38,7 @@ pipeline {
     
     post { 
         always { 
+            echo "Validate result of the build"
             script {
                 env.STATUS = ${currentBuild.currentResult}
             }
