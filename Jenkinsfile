@@ -38,7 +38,10 @@ pipeline {
     
     post { 
         always { 
-            env.STATUS = ${currentBuild.currentResult}
+            script {
+                env.STATUS = $currentBuild.currentResult
+            }
+            
             when(  env.STAUTS == "FAILURE") {
 
                 echo 'I will always say Hello again!'
