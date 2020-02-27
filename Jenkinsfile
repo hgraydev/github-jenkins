@@ -20,7 +20,21 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
+                
                 echo 'Running tests ......' 
+                catchError(stageResult: 'FAILURE') {
+                    script {
+                        withEnv(['JIRA_SITE=LOCAL']) {
+                        def testIssue = [fields: [ project: [id: '10001'],
+                                                    summary: 'New JIRA Created from Jenkins.',
+                                                    description: 'New JIRA Created from Jenkins.',
+                                                    issuetype: [id: '10010']]]
+                        response = jiraNewIssue issue: testIssue
+                        echo response.successful.toString()
+                        echo response.data.toString()
+                        }
+                    }
+                }
             }
         }
         stage('e2e Tests') {
@@ -35,32 +49,4 @@ pipeline {
             }
         }
     }
-    
-    post { 
-        always { 
-            echo "Validate result of the build"
-            script {
-                env.STATUS = ${currentBuild.currentResult}
-            }
-            
-            when(  env.STATUS == "FAILURE") {
-
-                echo 'I will always say Hello again!'
-                script {
-                    withEnv(['JIRA_SITE=LOCAL']) {
-                    def testIssue = [fields: [ project: [id: '10001'],
-                                                summary: 'New JIRA Created from Jenkins.',
-                                                description: 'New JIRA Created from Jenkins.',
-                                                issuetype: [id: '10010']]]
-
-                    response = jiraNewIssue issue: testIssue
-
-                    echo response.successful.toString()
-                    echo response.data.toString()
-                    }
-                }
-            }
-        }
-    }
-
 }
