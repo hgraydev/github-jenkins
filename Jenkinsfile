@@ -20,17 +20,17 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                
                 echo 'Running tests ......' 
-                
-                catchError(stageResult: 'FAILURE') {
-                    echo 'ERROR >>>>>'
-                    sh 'pytest --junitxml=result.xml'
-                }
+                sh 'pytest --junitxml=result.xml'
             }
         }
         stage('e2e Tests') {
+            
             steps {
+                catchError(stageResult: 'FAILURE') {
+                    echo 'ERROR >>>>>'
+                    
+                }
                 echo 'Running e2e test .......'
             }
         }
