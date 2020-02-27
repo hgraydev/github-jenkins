@@ -30,6 +30,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying proyect....'
+                echo "Init currentResult: ${currentBuild.currentResult}"
             }
         }
     }
