@@ -22,9 +22,10 @@ pipeline {
             steps {
                 
                 echo 'Running tests ......' 
-                sh 'pytest --junitxml=result.xml'
+                
                 catchError(stageResult: 'FAILURE') {
                     echo 'ERROR >>>>>'
+                    sh 'pytest --junitxml=result.xml'
                 }
             }
         }
