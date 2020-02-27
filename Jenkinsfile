@@ -1,4 +1,5 @@
 pipeline {
+    
     agent any
     
     environment {
@@ -29,6 +30,25 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying proyect....'
+            }
+        }
+    }
+    
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+            script {
+                withEnv(['JIRA_SITE=LOCAL']) {
+                def testIssue = [fields: [ project: [id: '10001'],
+                                            summary: 'New JIRA Created from Jenkins.',
+                                            description: 'New JIRA Created from Jenkins.',
+                                            issuetype: [id: '10010']]]
+
+                response = jiraNewIssue issue: testIssue
+
+                echo response.successful.toString()
+                echo response.data.toString()
+                }
             }
         }
     }
