@@ -23,14 +23,19 @@ pipeline {
                 echo 'Running tests ......' 
                 sh 'pytest --junitxml=result.xml'
             }
+            post {  // 'stage 3'
+                failure {
+                    echo "... at least one failed"
+                }
+                success {
+                    echo "Success!"
+                }
+            }
         }
         stage('e2e Tests') {
             
             steps {
-                catchError(stageResult: 'FAILURE') {
-                    echo 'ERROR >>>>>'
-                    
-                }
+
                 echo 'Running e2e test .......'
             }
         }
