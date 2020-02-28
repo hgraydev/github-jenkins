@@ -26,16 +26,14 @@ pipeline {
             post {  // 'stage 3'
                 failure {
                     echo "... at least one failed"
-                    script {
-                        repositoryUrl = scm.userRemoteConfigs[0].url
-                        echo repositoryUrl;
-                    }
+               
                 }
                 success {
                     echo "Success!"
                     script {
                         repositoryUrl = scm.userRemoteConfigs[0].url
-                        echo "${repositoryUrl}";
+                        echo "${repositoryUrl}"
+                        echo "${env.JOB_NAME}"
                     }
                 }
             }
