@@ -33,9 +33,10 @@ pipeline {
                     script {
                         repositoryUrl = scm.userRemoteConfigs[0].url
                         echo "${repositoryUrl}"
-                        echo "${env.JOB_NAME}"}
+                        echo "${env.JOB_NAME}"
                         def summary = junit testResults: 'result.xml'
-                        echo "{$summary}"
+                        echo "${summary}"
+                        echo "${env.BUILD_URL}"
                     }
                 }
             }
