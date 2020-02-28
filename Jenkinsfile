@@ -34,6 +34,8 @@ pipeline {
                         repositoryUrl = scm.userRemoteConfigs[0].url
                         echo "${repositoryUrl}"
                         echo "${env.JOB_NAME}"
+                        echo "Tests: ${testResultAction.failCount} / ${testResultAction.failureDiffString} failures of ${testResultAction.totalCount}.\n\n" 
+
                     }
                 }
             }
