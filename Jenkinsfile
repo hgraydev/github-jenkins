@@ -33,6 +33,10 @@ pipeline {
                 }
                 success {
                     echo "Success!"
+                    script {
+                        repositoryUrl = scm.userRemoteConfigs[0].url
+                        echo "${repositoryUrl}";
+                    }
                 }
             }
         }
