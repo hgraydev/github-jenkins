@@ -33,9 +33,9 @@ pipeline {
                     script {
                         repositoryUrl = scm.userRemoteConfigs[0].url
                         echo "${repositoryUrl}"
-                        echo "${env.JOB_NAME}"
-                        echo "Tests: ${testResultAction.failCount} / ${testResultAction.failureDiffString} failures of ${testResultAction.totalCount}.\n\n" 
-
+                        echo "${env.JOB_NAME}"}
+                        def summary = junit testResults: 'result.xml'
+                        echo "{$summary}"
                     }
                 }
             }
