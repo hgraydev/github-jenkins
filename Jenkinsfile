@@ -30,6 +30,26 @@ pipeline {
             
                 sh 'pytest --junitxml=result.xml'
             }
+            post {
+                failure {
+                    script {
+                        withEnv(['JIRA_SITE=JIRA Steps']) {
+                          def testIssue = [fields: [ project: [id: '10311'],
+                                                     summary: 'New JIRA Created from Jenkins.',
+                                                     description: 'New JIRA Created from Jenkins.',
+                                                     issuetype: [id: '10103']]]
+
+                          response = jiraNewIssue issue: testIssue
+
+                          echo response.successful.toString()
+                          echo response.data.toString()
+                        }
+                    }
+                }
+                success {
+                    echo 'Test Successful'
+                }
+            }
         }
         stage('e2e Tests') {
             
