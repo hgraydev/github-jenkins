@@ -13,9 +13,9 @@ pipeline {
                 echo 'Install dependencies ......'
                 sh label: 'Install Python 3', script: 'sudo apt-get install python3  '
                 sh label: 'Verify python version', script: 'python3 -V'
-                sh label: 'Install pip', script: 'sudo apt install python-pip -y'
+                sh label: 'Install pip', script: 'sudo apt-get install python-pip -y'
                 sh label: 'Verify pip version', script: 'pip --version'
-                sh label: 'Install pytest', script: 'apt install python-pytest -y'
+                sh label: 'Install pytest', script: 'apt-get install python-pytest -y'
                 sh label: 'Verify pytest version', script: 'pytest --version'
             }
         }
