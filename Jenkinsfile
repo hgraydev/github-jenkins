@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Install dependencies ......'
                 sh label: 'Install Python 3', script: 'sudo apt-get install python3  '
-                sh label: 'Verify python version', script: 'python -V'
+                sh label: 'Verify python version', script: 'python3 -V'
                 sh label: 'Install pip', script: 'sudo apt-get install python3-pip'
                 sh label: 'Verify pip version', script: 'pip3 --version'
                 sh label: 'Install pytest', script: 'pip install -U pytest'
