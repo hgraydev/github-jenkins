@@ -11,7 +11,6 @@ pipeline {
         stage('Dependencies') {
             steps {
                 echo 'Install dependencies ......'
-                sh label: 'Add python respository', script: 'sudo add-apt-repository ppa:jonathonf/python-3.6'
                 sh label: 'update', script: 'sudo apt-get update'
                 sh label: 'Install Python 3', script: 'apt install python3'
                 sh label: 'Verify python version', script: 'python -V'
