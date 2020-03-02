@@ -15,7 +15,7 @@ pipeline {
                 sh label: 'Verify python version', script: 'python3 -V'
                 sh label: 'Install pip', script: 'sudo apt-get install python-pip -y'
                 sh label: 'Verify pip version', script: 'pip --version'
-                sh label: 'Install pytest', script: 'apt-get install python-pytest -y'
+                sh label: 'Install pytest', script: 'sudo apt-get install -y python-pytest'
                 sh label: 'Verify pytest version', script: 'pytest --version'
             }
         }
