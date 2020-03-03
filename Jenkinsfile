@@ -62,6 +62,25 @@ pipeline {
     post {
        always {
            jiraSendBuildInfo branch: 'master-JJ-1', site: 'proyectosinterware.atlassian.net'
+           
+           junit (
+             testResults: 'results/result-output.xml',
+             testDataPublishers: [
+               jiraTestResultReporter(
+                 configs: [
+                   jiraStringField(fieldKey: 'summary', value: '${DEFAULT_SUMMARY}'),
+                   jiraStringField(fieldKey: 'description', value: '${DEFAULT_DESCRIPTION}'),
+                   jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
+                 ],
+                 projectKey: 'JJ',
+                 issueType: '10100',
+                 autoRaiseIssue: false,
+                 autoResolveIssue: false,
+                 autoUnlinkIssue: false,
+               )
+             ]
+            )
+
        }
    }
 }
