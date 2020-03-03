@@ -10,7 +10,7 @@ describe('Open IW Site', function() {
 		cy.get('input[name=company]').type('CompanyFake')
 		cy.get('input[name=jobtitle]').type('Developer')
 		cy.get('select[name=solucion_de_interes]').select('Chatbot')
-		cy.get('input[name=states]').type('Ciudad de México')
+		cy.get('input[name=state]').type('Ciudad de México')
 		cy.get('[type="submit"]').click()
 	})
 })
