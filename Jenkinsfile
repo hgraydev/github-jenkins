@@ -20,7 +20,11 @@ pipeline {
                 sh label: 'Verify pytest version', script: 'pytest --version'
                 
                 echo ':::::: Install Cypress ::::::'
-                
+                sh 'sudo apt update'
+                sh 'sudo apt install nodejs -y'
+                sh 'nodejs --version'
+                sh 'sudo apt install npm'
+                sh 'npm --version'
                 sh label: 'Install npm dependencies', script: 'npm install'
             }
         }
