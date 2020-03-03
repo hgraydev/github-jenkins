@@ -61,7 +61,6 @@ pipeline {
     }
     post {
        always {
-           jiraSendBuildInfo branch: 'master-JJ-1', site: 'proyectosinterware.atlassian.net'
            
            junit (
              testResults: 'results/result-output.xml',
@@ -73,7 +72,7 @@ pipeline {
                    jiraStringArrayField(fieldKey: 'labels', values: [jiraArrayEntry(value: 'Jenkins'), jiraArrayEntry(value:'Integration')])
                  ],
                  projectKey: 'JJ',
-                 issueType: '10101',
+                 issueType: '10100',
                  autoRaiseIssue: true,
                  autoResolveIssue: false,
                  autoUnlinkIssue: false,
