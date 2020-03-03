@@ -64,7 +64,7 @@ pipeline {
            jiraSendBuildInfo branch: 'master-JJ-1', site: 'proyectosinterware.atlassian.net'
            
            junit (
-             testResults: 'results/result-output.xml',
+             testResults: 'result.xml',
              testDataPublishers: [
                jiraTestResultReporter(
                  configs: [
