@@ -10,13 +10,18 @@ pipeline {
     stages {
         stage('Dependencies') {
             steps {
-                echo 'Install dependencies ......'
+                echo ':::::: Install Python dependencies ::::::'
+                
                 sh label: 'Install Python 3', script: 'sudo apt-get install python3  '
                 sh label: 'Verify python version', script: 'python3 -V'
                 sh label: 'Install pip', script: 'sudo apt-get install python-pip -y'
                 sh label: 'Verify pip version', script: 'pip --version'
                 sh label: 'Install pytest', script: 'sudo apt-get install -y python-pytest'
                 sh label: 'Verify pytest version', script: 'pytest --version'
+                
+                echo ':::::: Install Cypress ::::::'
+                
+                sh label: 'Install npm dependencies', script: 'npm install'
             }
         }
         stage('Build') {
@@ -54,8 +59,8 @@ pipeline {
         stage('e2e Tests') {
             
             steps {
-
                 echo 'Running e2e test .......'
+                sh label:'run cypress', script: './node_modules/cypress/bin/cypress run'
             }
         }
         stage('Deploy') {
