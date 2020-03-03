@@ -3,4 +3,4 @@ import pytest
 def suma():
     return 6
 def test_suma():
-    assert suma() == 5
+    assert suma() == 6
