@@ -1,1 +1,7 @@
-{}
+{
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "results/result-output.xml",
+    "toConsole": true
+  }
+}

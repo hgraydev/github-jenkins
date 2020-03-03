@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="6.803000000000001" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-03-03T17:25:14" tests="0" file="cypress/integration/examples/iw-demo-testing_spec.js" failures="0" time="0">
+  </testsuite>
+  <testsuite name="Open IW Site" timestamp="2020-03-03T17:25:14" tests="2" failures="0" time="6.803000000000001">
+    <testcase name="Open IW Site Visiti IW Site" time="4.272" classname="Visiti IW Site">
+    </testcase>
+    <testcase name="Open IW Site Fill Form" time="2.531" classname="Fill Form">
+    </testcase>
+  </testsuite>
+</testsuites>
