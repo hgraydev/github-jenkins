@@ -23,7 +23,7 @@ pipeline {
                 sh 'sudo apt update'
                 sh 'sudo apt install nodejs -y'
                 sh 'nodejs --version'
-                sh 'sudo apt install npm'
+                sh 'sudo apt install npm -y'
                 sh 'npm --version'
                 sh label: 'Install npm dependencies', script: 'npm install'
             }
