@@ -61,6 +61,7 @@ pipeline {
     }
     post {
        always {
+           jiraSendBuildInfo branch: 'master-JJ-1', site: 'proyectosinterware.atlassian.net'
            
            junit (
              testResults: 'results/result-output.xml',
